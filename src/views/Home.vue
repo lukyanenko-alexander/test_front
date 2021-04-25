@@ -1,6 +1,6 @@
 <template>
   <div>
-    Этот сайт сгенерирован с помощью Laravel Faker
+    Этот сайт сгенерирован с помощью Lorem
   </div>
 </template>
 
