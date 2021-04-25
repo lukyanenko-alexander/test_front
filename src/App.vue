@@ -1,12 +1,40 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Navigation></Navigation>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Navigation from "./components/Navigation";
+import {mapActions} from 'vuex'
+
+export default {
+  components: {
+    Navigation
+  },
+  watch: {
+    $route(to, from) {
+      if (to !== from) {
+        this.drop()
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      dropMessage: 'popUp/dropMessage',
+      dropErrors: 'error/dropErrors',
+    }),
+    drop(){
+      this.dropMessage();
+      this.dropErrors();
+    },
+    async submit () {
+      await this.signIn(this.form)
+    }
+  },
+}
+</script>
 
 <style>
 #app {
